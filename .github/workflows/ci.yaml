@@ -1,5 +1,6 @@
 name: CI
 dependency-submission:
+    continue-on-error: true        
     permissions:
       contents: write
 on:
