@@ -1,0 +1,11 @@
+# application-staging.yml — non-secret staging overrides only
+
+logging:
+  structured:
+    format:
+      console: ecs        
+
+management:
+  tracing:
+    sampling:
+      probability: 0.1    # 10% sampling in staging 
