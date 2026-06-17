@@ -1,11 +1,9 @@
 package com.fairshare.backend.receipts.internal;
 
 import java.net.URI;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
@@ -22,7 +20,7 @@ public class StorageConfiguration {
         .credentialsProvider(
             StaticCredentialsProvider.create(
                 AwsBasicCredentials.create(
-                    storageProperties.accessKey(), storageProperties.secretkey())))
+                    storageProperties.accessKey(), storageProperties.secretKey())))
         .forcePathStyle(true)
         .build();
   }
