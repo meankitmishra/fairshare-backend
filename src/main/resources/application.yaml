@@ -1,0 +1,57 @@
+spring:
+    application:
+        name: fairshare
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        open-in-view: false
+    flyway:
+        enabled: true
+    docker:
+        compose:
+            lifecycle-management: start-only
+    data:
+        redis:
+            host: ${SPRING_DATA_REDIS_HOST:localhost}
+            port: ${SPRING_DATA_REDIS_PORT:6379}
+
+server:
+    port: 8080
+
+logging:
+    structured:
+        format:
+            console: ecs
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info,prometheus,metrics
+    metrics:
+        tags:
+            application: ${spring.application.name}
+    endpoint:
+        health:
+            show-components: always
+            probes:
+                enabled: true
+    tracing:
+        sampling:
+            probability: 1.0
+    oltp:
+        tracing:
+            endpoint: ${OLTP_ENDPOINT:http://localhost:4318/v1/traces}
+
+fairshare:
+    storage:
+        endpoint: ${STORAGE_ENDPOINT:http://localhost:9000}
+        region: ${STORAGE_REGION:ap-south-2}
+        bucket: ${STORAGE_BUCKET:fairshare-receipts}
+        access-key: ${STORAGE_ACCESS_KEY:dev}
+        access-secret: ${STORAGE_SECRET_KEY:devsecret}
+
+
+
+
+    
